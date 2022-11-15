@@ -7,13 +7,8 @@ public class RecursivePingulogy {
 	public static int acc2 = 0;
 	// task 1
 	public static long pinguSequenceRec(int n, int p0, int p1, int p2) {
-		if (n >= 0) {
 			//wenn n >= 0
 			return pSR_go(n, p0, p1, p2);
-		} else {
-			//wenn n < 0
-			return 2 * pSR_go(-n, p0, p1, p2);
-		}
 	}
 
 	public static long pSR_go(int n, long a0, long a1, long a2) {
@@ -23,9 +18,11 @@ public class RecursivePingulogy {
 			return a1;
 		} else if (n == 2) {
 			return a2;
-		} else {
+		} else if (n > 0){
 			//tails recursion indem Werte mit a0, a1, a2 zwischenberechnet werden
 			return pSR_go(n - 1, a1, a2, a0 * 2 - a1 + a2);
+		} else {
+			return 2 * pSR_go(-n, a0, a1, a2);
 		}
 	}
 
