@@ -7,7 +7,6 @@ public class RecursivePingulogy {
 	public static int acc2 = 0;
 	// task 1
 	public static long pinguSequenceRec(int n, int p0, int p1, int p2) {
-			//wenn n >= 0
 			return pSR_go(n, p0, p1, p2);
 	}
 
@@ -30,30 +29,67 @@ public class RecursivePingulogy {
 	// Hint: pinguF and pinguM are not static (and must not be changed to it!)
 	// more information in the main-method below
 	public int pinguF(int n) {
-		// TODO
-		return -1;
+		if (n == 0) {
+			return 1;
+		}
+		return n - pinguM(pinguF(n - 1));
 	}
 
 	public int pinguM(int n) {
-		// TODO
-		return -1;
+		if (n == 0) {
+			return 0;
+		}
+		return n - pinguF(pinguM(n - 1));
 	}
 
 	// task 3
 	public static int pinguCode(int n, int m) {
-		// TODO
-		return -1;
+		return pC_go(n, m, 0);
+	}
+
+	public static int pC_go(int n, int m, int acc) {
+		if (n == 0) {
+			return m + acc;
+		} else if ((n + acc) % 2 == 0) {
+			//Math.floor nicht nötig, da int automatisch abrundet
+			return pC_go(m, n / 2, acc + n / 2);
+		} else {
+			return pC_go(n - 1, m / 2, acc + m);
+		}
 	}
 
 	// task 4
 	public static String pinguDNA(int f, int m) {
-		// TODO
-		return "TODO";
+		f = Integer.parseInt(Integer.toBinaryString(f));
+		m = Integer.parseInt(Integer.toBinaryString(m));
+
+		if (f == 0 && m == 0) {
+			return "";
+		} else if (f == 0 && m > 0) {
+			return pinguDNA(f, Integer.parseInt(Integer.toString(m), 2) / 2) + "A";
+		} else if (f > 0 && m == 0) {
+			return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, m) + "T";
+		} else {
+			if (f % 10 == m % 10) {
+				if (f > m) {
+					//f = Integer.parseInt(Integer.toString(f), 2) / 2;
+					return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, Integer.parseInt(Integer.toString(m), 2) / 2) + "GT";
+				} else if (f < m){
+					return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, Integer.parseInt(Integer.toString(m), 2) / 2) + "GA";
+				} else {
+					return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, Integer.parseInt(Integer.toString(m), 2) / 2) + "GC";
+				}
+			} else if (f % 10 == 1) {
+				return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, Integer.parseInt(Integer.toString(m), 2) / 2) + "TC";
+			} else {
+				return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, Integer.parseInt(Integer.toString(m), 2) / 2) + "AC";
+			}
+		}
 	}
 
 	public static void main(String[] args) {
 		// switch value to test other tasks
-		int testTask = 1;
+		int testTask = 4;
 
 		switch (testTask) {
 		case 1:
