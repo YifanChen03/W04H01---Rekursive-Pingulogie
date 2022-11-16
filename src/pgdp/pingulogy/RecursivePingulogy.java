@@ -72,7 +72,7 @@ public class RecursivePingulogy {
 			//return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, m) + "T";
 			return pinguDNA(f / 2, m) + "T";
 		} else {
-			if (f % 10 == m % 10) {
+			if (f % 2 == m % 2) {
 				if (f > m) {
 					//f = Integer.parseInt(Integer.toString(f), 2) / 2;
 					//return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, Integer.parseInt(Integer.toString(m), 2) / 2) + "GT";
@@ -84,7 +84,7 @@ public class RecursivePingulogy {
 					//return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, Integer.parseInt(Integer.toString(m), 2) / 2) + "GC";
 					return pinguDNA(f / 2, m / 2) + "GC";
 				}
-			} else if (f % 10 == 1) {
+			} else if (f % 2 == 1) {
 				//return pinguDNA(Integer.parseInt(Integer.toString(f), 2) / 2, Integer.parseInt(Integer.toString(m), 2) / 2) + "TC";
 				return pinguDNA(f / 2, m / 2) + "TC";
 			} else {
